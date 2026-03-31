@@ -5,8 +5,8 @@
 # Usage: ./script4.sh /var/log/messages error
 
 # --- Variables ---
-# [cite_start]$1 is the first argument (logfile), $2 is the second (keyword)[span_3](end_span)
-LOGFILE=${1:-"/var/log/syslog"} 
+# $1 is the first argument (logfile), $2 is the second (keyword)
+LOGFILE=${1:-"/var/log/syslog"}
 KEYWORD=${2:-"error"}
 COUNT=0
 
@@ -14,19 +14,17 @@ echo "Starting Log Analysis on: $LOGFILE"
 echo "Searching for keyword: '$KEYWORD'"
 echo "------------------------------------------"
 
-# [span_4](start_span)Check if the log file exists before proceeding[span_4](end_span)
+# Check if the log file exists before proceeding
 if [ ! -f "$LOGFILE" ]; then
     echo "Error: File $LOGFILE not found."
     exit 1
 fi
 
-# [span_5](start_span)While-read loop to process the file line by line [cite: 165, 177-182]
+# While-read loop to process the file line by line
 while IFS= read -r LINE; do
-    # [cite_start]Search for the keyword (case-insensitive)[span_5](end_span)
+    # Search for the keyword (case-insensitive)
     if echo "$LINE" | grep -iq "$KEYWORD"; then
         COUNT=$((COUNT + 1))
-        # Optional: Print the matching line (helpful for the screenshot)
-        # echo "Match found: $LINE"
     fi
 done < "$LOGFILE"
 
@@ -35,6 +33,6 @@ echo "Analysis Complete."
 echo "Keyword '$KEYWORD' was found $COUNT times in $LOGFILE."
 echo "------------------------------------------"
 
-# [span_6](start_span)Extra Credit: Show the last 5 occurrences using tail[span_6](end_span)
+# Extra Credit: Show the last 5 occurrences using tail
 echo "Last 5 matches:"
 grep -i "$KEYWORD" "$LOGFILE" | tail -n 5
