@@ -4,21 +4,21 @@
 # Software: Linux Kernel
 
 echo "=========================================="
-echo "   Open Source Manifesto Generator"
+echo "    Open Source Manifesto Generator"
 echo "=========================================="
 echo "Answer three questions to generate your manifesto."
 echo
 
-# [cite_start]Interactive user input [cite: 193-196]
+# Interactive user input
 read -p "1. Name one open-source tool you use every day: " TOOL
 read -p "2. In one word, what does 'freedom' mean to you? " FREEDOM
 read -p "3. Name one thing you would build and share freely: " BUILD
 
-# [cite_start]Get current date[span_2](end_span)
+# Get current date
 DATE=$(date +'%d %B %Y')
 OUTPUT="manifesto_$(whoami).txt"
 
-# [span_3](start_span)Compose the manifesto paragraph [cite: 199-200]
+# Compose the manifesto paragraph
 {
     echo "--- OPEN SOURCE MANIFESTO ---"
     echo "Generated on: $DATE"
@@ -34,6 +34,7 @@ OUTPUT="manifesto_$(whoami).txt"
 echo
 echo "Success! Your manifesto has been saved to $OUTPUT"
 echo "------------------------------------------"
-# [cite_start]Display the final result[span_3](end_span)
+
+# Display the final result
 cat "$OUTPUT"
 echo "=========================================="
